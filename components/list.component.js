@@ -9,12 +9,18 @@ import {
   FlatList,
   TouchableOpacity,
 } from "react-native";
+import { useState } from "react";
 
-export default function List({ PrassHandler, notifications }) {
+export default function List({ PrassHandler, notifications, curruntList }) {
+  // before i render the list i have to know witch list i want to disply
+  //accurding to the notifications
+  //put for the data the result of checking if the corrunt print is true or false
+
+  const curnot = notifications.filter((item) => item.read === curruntList);
   return (
     <View style={styles.listContainer}>
       <FlatList
-        data={notifications}
+        data={curnot}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
           <TouchableOpacity onPress={(id) => PrassHandler(item.id)}>

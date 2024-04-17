@@ -16,8 +16,6 @@ export default function home() {
   // get data from json
   const data = require("../data/task.json").data[0].notifications;
 
-  // const dataFalse = data.filter((item) => item.read !== true);
-
   const [notifications, setNotificationes] = useState(data);
 
   return (

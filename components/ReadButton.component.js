@@ -4,13 +4,13 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 
-export default function ReadButton() {
+export default function ReadButton({ PrassHandler1 }) {
+  function prassHandler() {
+    // take all the notificatioens and change them read === true
+  }
   return (
     <View style={styles.buttonContainer}>
-      <TouchableOpacity
-        onPress={() => console.log("on work")}
-        style={styles.button}
-      >
+      <TouchableOpacity onPress={PrassHandler1} style={styles.button}>
         <Text style={styles.buttonText}>סמן הכל כנקרא</Text>
       </TouchableOpacity>
     </View>

@@ -16,22 +16,34 @@ export default function ShowNotifications({
   notifications,
   setNotificationes,
 }) {
-  const [curNotificatins, setCurNotifications] = useState(notifications);
+  const [curruntList, setCurrentList] = useState(false);
   // remove the object from the list by press
-  function PrassHandler(id) {
+  function PrassHandler0(id) {
     setNotificationes((prevNotificatins) => {
       return prevNotificatins.filter((item) => item.id !== id);
     });
   }
+  // function PrassHandler1() {
+  //   setNotificationes((prevNotifications) => {
+  //     return prevNotifications.map((item) => ({
+  //       ...item,
+  //       read: "true",
+  //     }));
+  //   });
+  // }
 
   // heder, list and button
   return (
     <View style={styles.container}>
       <Heder
         setModalVisible={setModalVisible}
-        setNotificationes={setNotificationes}
+        setCurrentList={setCurrentList}
       />
-      <List PrassHandler={PrassHandler} notifications={notifications} />
+      <List
+        PrassHandler={PrassHandler0}
+        notifications={notifications}
+        curruntList={curruntList}
+      />
       <ReadButton />
     </View>
   );

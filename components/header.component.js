@@ -16,10 +16,14 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 
-export default function Heder({ setModalVisible }) {
+export default function Heder({ setModalVisible, setCurrentList }) {
   function PressHandler() {
-    console.log("preesed");
+    setCurrentList(true);
   }
+  function PrassHandler2() {
+    setCurrentList(false);
+  }
+
   return (
     <View>
       <View style={styles.titalContainer}>
@@ -35,7 +39,7 @@ export default function Heder({ setModalVisible }) {
         </TouchableOpacity>
       </View>
       <View style={styles.subTitalContainer}>
-        <TouchableWithoutFeedback>
+        <TouchableWithoutFeedback onPress={PrassHandler2}>
           <Text style={styles.notread}>שלא נקראו</Text>
         </TouchableWithoutFeedback>
         <TouchableWithoutFeedback onPress={PressHandler} useForeground={false}>
