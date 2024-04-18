@@ -1,5 +1,5 @@
 import { StyleSheet, View } from "react-native";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import List from "../components/list.component";
 import Heder from "../components/header.component";
@@ -29,6 +29,22 @@ export default function ShowNotifications({
       prevObjects.map((obj) => ({ ...obj, read: true }))
     );
   }
+
+  useEffect(() => {
+    const sortedData = [...notifications].sort((a, b) => {
+      const parseDate = (dateStr) => {
+        const [day, month, year, time] = dateStr.split(/[ /:]/);
+        return new Date(`20${year}`, month - 1, day, ...time.split(":"));
+      };
+
+      const dateA = parseDate(a.date);
+      const dateB = parseDate(b.date);
+
+      return dateB - dateA;
+    });
+
+    setNotificationes(sortedData);
+  }, []);
 
   // heder, list and button
   return (

@@ -32,6 +32,7 @@ export default function AddForm({
           value={textInput1Value}
           style={styles.input}
           onChangeText={handleTextInput1Change}
+          textAlign="right"
         />
       </View>
       <View style={styles.inputContainer2}>

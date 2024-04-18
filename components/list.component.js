@@ -1,6 +1,3 @@
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { faBell } from "@fortawesome/free-regular-svg-icons";
-library.add(faBell);
 import {
   View,
   Text,
@@ -8,6 +5,9 @@ import {
   FlatList,
   TouchableOpacity,
 } from "react-native";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faBell } from "@fortawesome/free-regular-svg-icons";
+library.add(faBell);
 
 export default function List({ PrassHandler, notifications, curruntList }) {
   const data = notifications.filter((item) => item.read === curruntList);
@@ -30,7 +30,7 @@ export default function List({ PrassHandler, notifications, curruntList }) {
               </View>
 
               <Text style={styles.content}>{item.content}</Text>
-              <Text style={styles.date}>{item.date}</Text>
+              <Text style={styles.date}>{item.date.slice(0, 10)}</Text>
             </View>
           </TouchableOpacity>
         )}
