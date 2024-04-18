@@ -1,15 +1,13 @@
+import { StyleSheet, View } from "react-native";
+import { useState } from "react";
+
 import List from "../components/list.component";
 import Heder from "../components/header.component";
 import ReadButton from "../components/ReadButton.component";
+
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faBell } from "@fortawesome/free-regular-svg-icons";
 library.add(faBell);
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from "react-native-responsive-screen";
-import { StyleSheet, View } from "react-native";
-import { useState } from "react";
 
 export default function ShowNotifications({
   setModalVisible,
@@ -17,20 +15,20 @@ export default function ShowNotifications({
   setNotificationes,
 }) {
   const [curruntList, setCurrentList] = useState(false);
-  // remove the object from the list by press
+  // toggle the notifications from  list to list
   function PrassHandler0(id) {
-    setNotificationes((prevNotificatins) => {
-      return prevNotificatins.filter((item) => item.id !== id);
+    setNotificationes((prevNotifications) => {
+      return prevNotifications.map((obj) =>
+        obj.id === id ? { ...obj, read: true } : obj
+      );
     });
   }
-  // function PrassHandler1() {
-  //   setNotificationes((prevNotifications) => {
-  //     return prevNotifications.map((item) => ({
-  //       ...item,
-  //       read: "true",
-  //     }));
-  //   });
-  // }
+  // make all the notRead as read
+  function PrassHandler1() {
+    setNotificationes((prevObjects) =>
+      prevObjects.map((obj) => ({ ...obj, read: true }))
+    );
+  }
 
   // heder, list and button
   return (
@@ -38,13 +36,18 @@ export default function ShowNotifications({
       <Heder
         setModalVisible={setModalVisible}
         setCurrentList={setCurrentList}
+        curruntList={curruntList}
       />
       <List
         PrassHandler={PrassHandler0}
         notifications={notifications}
         curruntList={curruntList}
       />
-      <ReadButton />
+      {curruntList === false ? (
+        <ReadButton PrassHandler1={PrassHandler1} />
+      ) : (
+        ""
+      )}
     </View>
   );
 }

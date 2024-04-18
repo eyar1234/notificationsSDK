@@ -16,7 +16,11 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 
-export default function Heder({ setModalVisible, setCurrentList }) {
+export default function Heder({
+  setModalVisible,
+  setCurrentList,
+  curruntList,
+}) {
   function PressHandler() {
     setCurrentList(true);
   }
@@ -40,10 +44,24 @@ export default function Heder({ setModalVisible, setCurrentList }) {
       </View>
       <View style={styles.subTitalContainer}>
         <TouchableWithoutFeedback onPress={PrassHandler2}>
-          <Text style={styles.notread}>שלא נקראו</Text>
+          <Text
+            style={[
+              styles.notReadNotifications,
+              curruntList && styles.activeText, // Add this line
+            ]}
+          >
+            שלא נקראו
+          </Text>
         </TouchableWithoutFeedback>
         <TouchableWithoutFeedback onPress={PressHandler} useForeground={false}>
-          <Text style={styles.allTheNotificatiens}>כל ההתראות</Text>
+          <Text
+            style={[
+              styles.notReadNotifications,
+              !curruntList && styles.activeText,
+            ]}
+          >
+            כל ההתראות
+          </Text>
         </TouchableWithoutFeedback>
       </View>
     </View>
@@ -62,7 +80,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: wp(4),
   },
   icon: {
-    flex: 1,
+    padding: 10,
   },
   tital: {
     flex: 2,
@@ -89,7 +107,7 @@ const styles = StyleSheet.create({
     marginBottom: 30,
     paddingHorizontal: 30,
   },
-  notread: {
+  notReadNotifications: {
     flex: 1,
     fontSize: 20,
     textAlign: "right",
@@ -98,6 +116,9 @@ const styles = StyleSheet.create({
   allTheNotificatiens: {
     flex: 1,
     fontSize: 20,
+    color: "#959595",
+  },
+  activeText: {
     color: "#959595",
   },
 });

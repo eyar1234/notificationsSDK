@@ -5,9 +5,6 @@ import {
 } from "react-native-responsive-screen";
 
 export default function ReadButton({ PrassHandler1 }) {
-  function prassHandler() {
-    // take all the notificatioens and change them read === true
-  }
   return (
     <View style={styles.buttonContainer}>
       <TouchableOpacity onPress={PrassHandler1} style={styles.button}>

@@ -1,5 +1,5 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -7,13 +7,23 @@ import { faBell } from "@fortawesome/free-regular-svg-icons";
 library.add(faBell);
 
 export default function BarComponent({ setModalVisible, notifications }) {
-  const [NumNotiification, SetNumNotiification] = useState(0);
+  const [NumNotiification, setNumNotiification] = useState(
+    createNumNotifictions(notifications)
+  );
+
+  useEffect(() => {
+    setNumNotiification(createNumNotifictions(notifications));
+  }, [notifications]);
+
+  function createNumNotifictions(notifications) {
+    const curNot = notifications.filter((item) => item.read === false);
+    return curNot.length;
+  }
 
   function PrassHandler() {
-    SetNumNotiification((prevNum) => prevNum + 1);
     setModalVisible(true);
-    console.log(notifications);
   }
+
   return (
     <View style={styles.IconContainer}>
       <TouchableOpacity onPress={PrassHandler}>
