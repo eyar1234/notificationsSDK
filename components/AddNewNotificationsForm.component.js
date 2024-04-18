@@ -32,7 +32,6 @@ export default function AddForm({
           value={textInput1Value}
           style={styles.input}
           onChangeText={handleTextInput1Change}
-          // textAlignVertical="top"
         />
       </View>
       <View style={styles.inputContainer2}>
@@ -41,13 +40,8 @@ export default function AddForm({
           value={textInput2Value}
           style={styles.input2}
           onChangeText={handleTextInput2Change}
-          textAlignVertical="top"
-          textAlign={
-            textInput2Value && textInput2Value.charCodeAt(0) > 255
-              ? "right"
-              : "left"
-          }
           multiline={true}
+          textAlign={"right"}
         />
       </View>
       <View style={styles.buttonContainer}>
@@ -63,7 +57,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#32324C",
-    // padding: 5,
     justifyContent: "center",
   },
   formContainer: {
@@ -74,7 +67,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "black",
     borderRadius: 20,
-    // padding: 10,
   },
   titelcontainer: {
     flexDirection: "row",
@@ -83,10 +75,8 @@ const styles = StyleSheet.create({
     height: hp(5),
     paddingHorizontal: wp(3),
     marginVertical: hp(2),
-    // backgroundColor: "blue",
   },
   x: {
-    // justifyContent: "center",
     fontSize: 30,
     textAlign: "left",
     paddingLeft: 6,
