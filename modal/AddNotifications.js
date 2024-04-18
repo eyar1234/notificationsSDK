@@ -1,4 +1,9 @@
-import { View, StyleSheet } from "react-native";
+import {
+  View,
+  StyleSheet,
+  TouchableWithoutFeedback,
+  Keyboard,
+} from "react-native";
 import { useState } from "react";
 
 import AddForm from "../components/AddNewNotificationsForm.component";
@@ -44,20 +49,22 @@ export default function AddNotificationsForm({
   }
 
   return (
-    <View style={styles.container}>
-      {page === 0 ? (
-        <AddForm
-          setModal2Visible={setModal2Visible}
-          handleTextInput1Change={handleTextInput1Change}
-          PrassHandler={PrassHandler}
-          handleTextInput2Change={handleTextInput2Change}
-          textInput1Value={textInput1Value}
-          textInput2Value={textInput2Value}
-        />
-      ) : (
-        <Done setModal2Visible={setModal2Visible} />
-      )}
-    </View>
+    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+      <View style={styles.container}>
+        {page === 0 ? (
+          <AddForm
+            setModal2Visible={setModal2Visible}
+            handleTextInput1Change={handleTextInput1Change}
+            PrassHandler={PrassHandler}
+            handleTextInput2Change={handleTextInput2Change}
+            textInput1Value={textInput1Value}
+            textInput2Value={textInput2Value}
+          />
+        ) : (
+          <Done setModal2Visible={setModal2Visible} />
+        )}
+      </View>
+    </TouchableWithoutFeedback>
   );
 }
 const styles = StyleSheet.create({
